@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #b8dbd9;
+  --color-secondary: #2f4550;
+  --color-tertiary: #586f7c;
+  --color-text: #000;
+  --color-bg: #f4f4f9;
+  --family-montserrat: 'Montserrat', sans-serif;
+  --size-base: 16px;
+}
+
+@import 'custom/custom';

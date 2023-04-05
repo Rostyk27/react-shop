@@ -1,0 +1,23 @@
+// root elements
+
+@layer base {
+  html {
+    @apply font-family-montserrat text-size-base leading-normal;
+  }
+
+  body {
+    @apply bg-color-bg text-[15px] text-color-text lg:text-size-base;
+  }
+
+  h1 {
+    @apply text-2xl lg:text-4xl;
+  }
+}
+
+#root {
+  @apply flex min-h-screen flex-col;
+}
+
+.container {
+  @apply mx-auto w-[1200px] max-w-[calc(100%-48px)] lg:max-w-[calc(100%-144px)];
+}

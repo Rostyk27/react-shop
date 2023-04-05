@@ -1,3 +1,11 @@
+import Main from './components/Main';
+import Footer from './components/Footer';
+
 export default function App() {
-  return <div className="text-3xl">Online shop</div>;
+  return (
+    <>
+      <Main />
+      <Footer />
+    </>
+  );
 }
