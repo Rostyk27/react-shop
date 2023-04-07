@@ -13,7 +13,9 @@
     @apply text-2xl lg:text-4xl;
   }
 
-  a {
+  a,
+  input,
+  button {
     @apply transition-all duration-200;
   }
 }

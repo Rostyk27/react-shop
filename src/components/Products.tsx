@@ -1,21 +1,22 @@
 import Product from './Product';
+import ProductSearch from './ProductSearch';
 import { useState, useEffect } from 'react';
 
 import type IProduct from '../types';
 
 export default function Products() {
   const [products, setProducts] = useState(null as IProduct[] | null);
+  const [searchTerm, setSearchTerm] = useState('' as string);
+  const [searchParam] = useState(['name', 'imageAlt'] as string[]);
+  const [searchResults, setSearchResults] = useState([] as IProduct[] | []);
 
   useEffect(() => {
-    // fetch('http://localhost:8000/products')
-    //   .then(response => response.json())
-    //   .then(data => setProducts(data));
-
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/products');
-        const data = await response.json();
-        setProducts(data);
+        const response = await fetch('/products-data.json');
+        const jsonFile: { products: IProduct[] } = await response.json();
+        const productsData: IProduct[] = jsonFile.products;
+        setProducts(productsData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -24,9 +25,35 @@ export default function Products() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (products === null) {
+      return;
+    }
+
+    setSearchResults(
+      products.filter((product: IProduct) =>
+        searchParam.some((param: string) => {
+          if (param === 'name') {
+            return product.name
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase());
+          } else if (param === 'imageAlt') {
+            return product.imageAlt
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase());
+          }
+        })
+      )
+    );
+  }, [products, searchTerm, searchParam]);
+
   if (products === null) {
     return <div className="container">Loading...</div>;
   }
+
+  const handleSearch = (query: string) => {
+    setSearchTerm(query);
+  };
 
   return (
     <section className="products mb-16 lg:mb-20">
@@ -35,9 +62,11 @@ export default function Products() {
           All products
         </h2>
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-10">
-          {products !== null &&
-            products.map((product: IProduct) => (
+        <ProductSearch searchTerm={searchTerm} onSearch={handleSearch} />
+
+        {searchResults.length > 0 && (
+          <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-10">
+            {searchResults.map((product: IProduct) => (
               <Product
                 key={product.id}
                 id={product.id}
@@ -48,7 +77,12 @@ export default function Products() {
                 imageAlt={product.imageAlt}
               />
             ))}
-        </div>
+          </div>
+        )}
+
+        {searchResults.length === 0 && (
+          <p>No products found for "{searchTerm}".</p>
+        )}
       </div>
     </section>
   );
