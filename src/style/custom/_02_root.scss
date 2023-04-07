@@ -6,11 +6,15 @@
   }
 
   body {
-    @apply bg-color-bg text-[15px] text-color-text lg:text-size-base;
+    @apply bg-white text-[15px] text-color-text lg:text-size-base;
   }
 
   h1 {
     @apply text-2xl lg:text-4xl;
+  }
+
+  a {
+    @apply transition-all duration-200;
   }
 }
 
