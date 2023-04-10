@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
+import ProductSearch from './ProductSearch';
+import ProductFilter from './ProductFilter';
+import ProductSort from './ProductSort';
+import ProductInStock from './ProductInStock';
 import ProductItem from './ProductItem';
-import ProductActions from './ProductActions';
 import Pagination from './Pagination';
 
 import type { IProduct } from '../types';
@@ -131,20 +134,28 @@ export default function Products() {
           All products
         </h2>
 
-        <ProductActions
-          searchTerm={searchTerm}
-          onSearch={handleSearch}
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryChange={handleCategoryChange}
-          selectedSort={selectedSort}
-          onSortChange={handleSortChange}
-          inStockOnly={inStockOnly}
-          onInStockChange={handleInStockChange}
-        />
+        <div className="product__actions mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 xl:gap-8">
+          <ProductSearch searchTerm={searchTerm} onSearch={handleSearch} />
+
+          <ProductFilter
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={handleCategoryChange}
+          />
+
+          <ProductSort
+            selectedSort={selectedSort}
+            onSortChange={handleSortChange}
+          />
+
+          <ProductInStock
+            inStockOnly={inStockOnly}
+            onInStockChange={handleInStockChange}
+          />
+        </div>
 
         {currentProducts.length > 0 && (
-          <ul className="products__list grid grid-cols-1 gap-x-6 gap-y-8  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-10">
+          <ul className="product__list grid grid-cols-1 gap-x-6 gap-y-8  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-10">
             {currentProducts.map((product: IProduct) => (
               <ProductItem
                 key={product.id}
