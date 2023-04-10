@@ -79,6 +79,16 @@
       "inStock": true,
       "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-08.jpg",
       "imageAlt": "Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop."
+    },
+    {
+      "id": 9,
+      "name": "New Pencil",
+      "link": "#",
+      "price": 44,
+      "category": "pen",
+      "inStock": true,
+      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
+      "imageAlt": "Lorem ipsum pencil."
     }
   ]
 }

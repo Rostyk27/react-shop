@@ -25,10 +25,7 @@ export default function ProductActions({
   onInStockChange: (inStock: boolean) => void;
 }) {
   return (
-    <div
-      className="product-actions mb-10 grid grid-cols-1 gap-4 
-                 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 xl:gap-8"
-    >
+    <div className="product__actions mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 xl:gap-8">
       <ProductSearch searchTerm={searchTerm} onSearch={onSearch} />
 
       <ProductFilter

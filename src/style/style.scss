@@ -1,7 +1,9 @@
+// tailwind default
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+// theme variables
 :root {
   --color-primary: #b8dbd9;
   --color-secondary: #2f4550;
@@ -12,4 +14,5 @@
   --size-base: 16px;
 }
 
-@import 'custom/custom';
+// theme custom styles
+@import 'theme';

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import ProductItem from './ProductItem';
 import ProductActions from './ProductActions';
+import Pagination from './Pagination';
 
 import type { IProduct } from '../types';
 
@@ -15,6 +16,9 @@ export default function Products() {
   const [filteredProducts, setFilteredProducts] = useState(
     [] as IProduct[] | []
   );
+  const [currentPage, setCurrentPage] = useState(1 as number);
+  const [currentProducts, setCurrentProducts] = useState([] as IProduct[] | []);
+  const productsPerPage: number = 4;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,7 +88,17 @@ export default function Products() {
     }
 
     setFilteredProducts(filteredProducts);
+    setCurrentPage(1);
   }, [products, searchTerm, selectedCategory, selectedSort, inStockOnly]);
+
+  useEffect(() => {
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+
+    setCurrentProducts(
+      filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+    );
+  }, [filteredProducts, currentPage]);
 
   if (products === null) {
     return <div className="container">Loading...</div>;
@@ -106,6 +120,10 @@ export default function Products() {
     setInStockOnly(inStock);
   };
 
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <section className="products mb-16 lg:mb-20">
       <div className="container">
@@ -125,12 +143,9 @@ export default function Products() {
           onInStockChange={handleInStockChange}
         />
 
-        {filteredProducts.length > 0 && (
-          <ul
-            className="products__list grid grid-cols-1 gap-x-6 gap-y-8 
-                       sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-10"
-          >
-            {filteredProducts.map((product: IProduct) => (
+        {currentProducts.length > 0 && (
+          <ul className="products__list grid grid-cols-1 gap-x-6 gap-y-8  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-10">
+            {currentProducts.map((product: IProduct) => (
               <ProductItem
                 key={product.id}
                 id={product.id}
@@ -146,7 +161,16 @@ export default function Products() {
           </ul>
         )}
 
-        {filteredProducts.length === 0 && <p>No products found</p>}
+        {currentProducts.length > 0 && (
+          <Pagination
+            productsPerPage={productsPerPage}
+            totalProducts={filteredProducts.length}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        )}
+
+        {currentProducts.length === 0 && <p>No products found</p>}
       </div>
     </section>
   );

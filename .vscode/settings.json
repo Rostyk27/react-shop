@@ -18,5 +18,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.linkedEditing": true
+  "editor.linkedEditing": true,
+  "editor.wordWrap": "wordWrapColumn"
 }
