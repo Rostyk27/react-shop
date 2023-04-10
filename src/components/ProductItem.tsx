@@ -9,6 +9,7 @@ export default function ProductItem({
   inStock,
   imageSrc,
   imageAlt,
+  addToCart,
 }: IProduct) {
   return (
     <li id={`pid_${id}`} className="product">
@@ -34,7 +35,11 @@ export default function ProductItem({
 
       <p className="mb-2">{inStock ? 'In stock' : 'Out of stock'}</p>
 
-      <strong className="lg:text-lg">${price}</strong>
+      <p>
+        <strong className="lg:text-lg">${price}</strong>
+      </p>
+
+      <button onClick={() => addToCart(id)}>Add to cart</button>
     </li>
   );
 }

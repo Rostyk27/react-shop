@@ -9,8 +9,13 @@ import Pagination from './Pagination';
 
 import type { IProduct } from '../types';
 
-export default function Products() {
-  const [products, setProducts] = useState(null as IProduct[] | null);
+export default function Products({
+  products,
+  addToCart,
+}: {
+  products: IProduct[] | null;
+  addToCart: (productId: number) => void;
+}) {
   const [categories, setCategories] = useState(['all'] as string[]);
   const [searchTerm, setSearchTerm] = useState('' as string);
   const [selectedCategory, setSelectedCategory] = useState('all' as string);
@@ -24,23 +29,15 @@ export default function Products() {
   const productsPerPage: number = 4;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/products-data.json');
-        const jsonFile: { products: IProduct[] } = await response.json();
-        const productsData: IProduct[] = jsonFile.products;
-        setProducts(productsData);
-        setCategories([
-          'all',
-          ...new Set(productsData.map((product: IProduct) => product.category)),
-        ]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    if (products === null) {
+      return;
+    }
 
-    fetchData();
-  }, []);
+    setCategories([
+      'all',
+      ...new Set(products.map((product: IProduct) => product.category)),
+    ]);
+  }, [products]);
 
   useEffect(() => {
     if (products === null) {
@@ -167,12 +164,13 @@ export default function Products() {
                 inStock={product.inStock}
                 imageSrc={product.imageSrc}
                 imageAlt={product.imageAlt}
+                addToCart={addToCart}
               />
             ))}
           </ul>
         )}
 
-        {currentProducts.length > 0 && (
+        {filteredProducts.length > productsPerPage && (
           <Pagination
             productsPerPage={productsPerPage}
             totalProducts={filteredProducts.length}
