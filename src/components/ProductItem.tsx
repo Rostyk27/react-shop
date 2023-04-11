@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AddToCartContext } from './AddToCartContext';
 
 import type { IProduct } from '../types';
@@ -13,7 +13,17 @@ export default function ProductItem({
   imageSrc,
   imageAlt,
 }: IProduct) {
+  const [buttonText, setButtonText] = useState('Add to cart');
+
   const addToCart = useContext(AddToCartContext);
+
+  const handleButtonText = () => {
+    setButtonText('Added!');
+
+    setTimeout(() => {
+      setButtonText('Add to cart');
+    }, 1000);
+  };
 
   return (
     <li id={`pid_${id}`} className="product">
@@ -47,8 +57,16 @@ export default function ProductItem({
       </p>
 
       {inStock ? (
-        <button type="button" className="button" onClick={() => addToCart(id)}>
-          Add to cart
+        <button
+          type="button"
+          className="button"
+          disabled={buttonText === 'Added!'}
+          onClick={() => {
+            addToCart(id);
+            handleButtonText();
+          }}
+        >
+          {buttonText}
         </button>
       ) : (
         <button className="button" disabled type="button">

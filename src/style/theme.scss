@@ -16,11 +16,17 @@
   button,
   select {
     @apply transition-all duration-200;
+
+    &[disabled] {
+      @apply pointer-events-none opacity-50;
+    }
   }
 
   input:not([type='submit']):not([type='button']):not([type='radio']):not(
       [type='checkbox']
-    ):not([type='file']),
+    ):not([type='file']:not([type='range'])):not([type='color']):not(
+      [type='number']
+    ),
   select {
     @apply h-[40px] w-full rounded-md border border-color-secondary 
     px-3 text-sm text-color-secondary placeholder-color-secondary 
