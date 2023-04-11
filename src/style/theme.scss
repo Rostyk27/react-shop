@@ -74,6 +74,10 @@
   &[disabled] {
     @apply pointer-events-none opacity-50;
   }
+
+  &.is_empty {
+    @apply bg-transparent text-color-tertiary ring-1 ring-color-tertiary hover:bg-color-tertiary hover:text-white;
+  }
 }
 
 .pagination {

@@ -10,8 +10,12 @@ import type { IProduct } from './types';
 
 export default function App() {
   const [products, setProducts] = useState(null as IProduct[] | null);
-  const [cartItems, setCartItems] = useState(
-    [] as { product: IProduct; quantity: number }[]
+  const savedCartItems: { product: IProduct; quantity: number }[] =
+    localStorage.getItem('cart-items')
+      ? JSON.parse(localStorage.getItem('cart-items') as string)
+      : [];
+  const [cartItems, setCartItems] = useState(() =>
+    savedCartItems.length > 0 ? savedCartItems : []
   );
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -31,7 +35,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    console.log(cartItems);
+    localStorage.setItem('cart-items', JSON.stringify(cartItems));
   }, [cartItems]);
 
   if (products === null) {
