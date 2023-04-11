@@ -40,10 +40,12 @@ export default function App() {
     const productToAdd = products.find(
       (product: IProduct) => product.id === productId
     );
+
     if (productToAdd) {
       const existingCartItem = cartItems.find(
         item => item.product.id === productId
       );
+
       if (existingCartItem) {
         setCartItems(
           cartItems.map(item =>

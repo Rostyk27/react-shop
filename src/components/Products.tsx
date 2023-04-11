@@ -44,9 +44,9 @@ export default function Products({
       return;
     }
 
-    let filteredProducts = products;
+    let filteredItems = products;
 
-    filteredProducts = products.filter((product: IProduct) => {
+    filteredItems = products.filter((product: IProduct) => {
       return (
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.imageAlt.toLowerCase().includes(searchTerm.toLowerCase())
@@ -54,40 +54,40 @@ export default function Products({
     });
 
     if (selectedCategory !== 'all') {
-      filteredProducts = filteredProducts.filter((product: IProduct) => {
+      filteredItems = filteredItems.filter((product: IProduct) => {
         return product.category === selectedCategory;
       });
     }
 
     if (selectedSort === 'name-asc') {
-      filteredProducts.sort((a: IProduct, b: IProduct) => {
+      filteredItems.sort((a: IProduct, b: IProduct) => {
         return a.name.localeCompare(b.name);
       });
     } else if (selectedSort === 'name-desc') {
-      filteredProducts.sort((a: IProduct, b: IProduct) => {
+      filteredItems.sort((a: IProduct, b: IProduct) => {
         return b.name.localeCompare(a.name);
       });
     } else if (selectedSort === 'price-asc') {
-      filteredProducts.sort((a: IProduct, b: IProduct) => {
+      filteredItems.sort((a: IProduct, b: IProduct) => {
         return a.price - b.price;
       });
     } else if (selectedSort === 'price-desc') {
-      filteredProducts.sort((a: IProduct, b: IProduct) => {
+      filteredItems.sort((a: IProduct, b: IProduct) => {
         return b.price - a.price;
       });
     } else {
-      filteredProducts.sort((a: IProduct, b: IProduct) => {
+      filteredItems.sort((a: IProduct, b: IProduct) => {
         return a.id - b.id;
       });
     }
 
     if (inStockOnly) {
-      filteredProducts = filteredProducts.filter((product: IProduct) => {
+      filteredItems = filteredItems.filter((product: IProduct) => {
         return product.inStock;
       });
     }
 
-    setFilteredProducts(filteredProducts);
+    setFilteredProducts(filteredItems);
     setCurrentPage(1);
   }, [products, searchTerm, selectedCategory, selectedSort, inStockOnly]);
 
@@ -152,7 +152,7 @@ export default function Products({
         </div>
 
         {currentProducts.length > 0 && (
-          <ul className="product__list grid grid-cols-1 gap-x-6 gap-y-8  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-10">
+          <ul className="product__list grid grid-cols-1 gap-x-6 gap-y-14  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {currentProducts.map((product: IProduct) => (
               <ProductItem
                 key={product.id}

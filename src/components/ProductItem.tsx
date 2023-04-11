@@ -13,8 +13,13 @@ export default function ProductItem({
 }: IProduct) {
   return (
     <li id={`pid_${id}`} className="product">
-      <a href={link} className="hover:opacity-75" aria-hidden="true">
-        <figure className="aspect-h-1 aspect-w-1 mb-4 w-full overflow-hidden rounded-lg bg-color-bg xl:aspect-h-8 xl:aspect-w-7">
+      <a
+        href={link}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="mb-4 flex hover:opacity-75"
+      >
+        <figure className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-color-bg xl:aspect-h-8 xl:aspect-w-7">
           <img
             src={imageSrc}
             alt={imageAlt}
@@ -23,23 +28,29 @@ export default function ProductItem({
         </figure>
       </a>
 
-      <h3 className="mb-1">
+      <small className="mb-3 inline-flex border-[1px] px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] text-color-tertiary">
+        {category}
+      </small>
+
+      <h3 className="mb-2">
         <a href={link} className="hover:text-color-tertiary">
           {name}
         </a>
       </h3>
 
-      <small className="mb-2 block text-color-tertiary">{imageAlt}</small>
-
-      <h4 className="mb-2">{category}</h4>
-
-      <p className="mb-2">{inStock ? 'In stock' : 'Out of stock'}</p>
-
-      <p>
-        <strong className="lg:text-lg">${price}</strong>
+      <p className="mb-5 lg:text-lg">
+        <strong>${price}</strong>
       </p>
 
-      <button onClick={() => addToCart(id)}>Add to cart</button>
+      {inStock ? (
+        <button type="button" className="button" onClick={() => addToCart(id)}>
+          Add to cart
+        </button>
+      ) : (
+        <button className="button" disabled type="button">
+          Out of stock
+        </button>
+      )}
     </li>
   );
 }
