@@ -7,5 +7,4 @@ export interface IProduct {
   inStock: boolean;
   imageSrc: string;
   imageAlt: string;
-  addToCart: (id: number) => void;
 }

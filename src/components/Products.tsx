@@ -7,6 +7,7 @@ import ProductInStock from './ProductInStock';
 import ProductItem from './ProductItem';
 import Pagination from './Pagination';
 
+import { AddToCartContext } from './AddToCartContext';
 import type { IProduct } from '../types';
 
 export default function Products({
@@ -153,20 +154,21 @@ export default function Products({
 
         {currentProducts.length > 0 && (
           <ul className="product__list grid grid-cols-1 gap-x-6 gap-y-14  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {currentProducts.map((product: IProduct) => (
-              <ProductItem
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                link={product.link}
-                price={product.price}
-                category={product.category}
-                inStock={product.inStock}
-                imageSrc={product.imageSrc}
-                imageAlt={product.imageAlt}
-                addToCart={addToCart}
-              />
-            ))}
+            <AddToCartContext.Provider value={addToCart}>
+              {currentProducts.map((product: IProduct) => (
+                <ProductItem
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  link={product.link}
+                  price={product.price}
+                  category={product.category}
+                  inStock={product.inStock}
+                  imageSrc={product.imageSrc}
+                  imageAlt={product.imageAlt}
+                />
+              ))}
+            </AddToCartContext.Provider>
           </ul>
         )}
 

@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { AddToCartContext } from './AddToCartContext';
+
 import type { IProduct } from '../types';
 
 export default function ProductItem({
@@ -9,8 +12,9 @@ export default function ProductItem({
   inStock,
   imageSrc,
   imageAlt,
-  addToCart,
 }: IProduct) {
+  const addToCart = useContext(AddToCartContext);
+
   return (
     <li id={`pid_${id}`} className="product">
       <a

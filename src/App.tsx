@@ -36,7 +36,7 @@ export default function App() {
     return <div className="container">Loading...</div>;
   }
 
-  const addToCart = (productId: number) => {
+  const handleAddToCart = (productId: number) => {
     const productToAdd = products.find(
       (product: IProduct) => product.id === productId
     );
@@ -70,7 +70,7 @@ export default function App() {
 
       <main id="main" className="flex-[1_0_auto] overflow-hidden">
         <Content />
-        <Products products={products} addToCart={addToCart} />
+        <Products products={products} addToCart={handleAddToCart} />
       </main>
 
       <Footer />
