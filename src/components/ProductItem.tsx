@@ -13,11 +13,11 @@ export default function ProductItem({
   imageSrc,
   imageAlt,
 }: IProduct) {
-  const [buttonText, setButtonText] = useState('Add to cart');
-
   const addToCart = useContext(AddToCartContext);
 
-  const handleButtonText = () => {
+  const [buttonText, setButtonText] = useState('Add to cart');
+
+  const handleButtonTextChange = () => {
     setButtonText('Added!');
 
     setTimeout(() => {
@@ -63,7 +63,7 @@ export default function ProductItem({
           disabled={buttonText === 'Added!'}
           onClick={() => {
             addToCart(id);
-            handleButtonText();
+            handleButtonTextChange();
           }}
         >
           {buttonText}
