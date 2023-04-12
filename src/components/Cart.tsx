@@ -22,21 +22,17 @@ export default function Cart({
   onHideCart: () => void;
   onClearCart: () => void;
 }) {
-  const [cartSuccessMessage, setCartSuccessMessage] = useState('');
-
-  const handleSuccessMessage = (msg: string) => {
-    setCartSuccessMessage(msg);
-
-    setTimeout(() => {
-      setCartSuccessMessage('');
-    }, 3000);
-  };
-
   useEffect(() => {
     if (totalCartItems === 0) {
       onHideCart();
     }
   }, [totalCartItems, onHideCart]);
+
+  const [cartSuccessMessage, setCartSuccessMessage] = useState('');
+
+  const handleSuccessMessage = (msg: string) => {
+    setCartSuccessMessage(msg);
+  };
 
   const a11y = !isCartOpen && { tabIndex: -1, 'aria-hidden': true };
 
@@ -95,7 +91,18 @@ export default function Cart({
       )}
 
       {cartSuccessMessage.length > 0 && (
-        <div className="popup !p-7 text-center">{cartSuccessMessage}</div>
+        <div className="popup !py-12 px-7 text-center">
+          {cartSuccessMessage}
+
+          <button
+            {...a11y}
+            type="button"
+            onClick={() => handleSuccessMessage('')}
+            className="absolute right-6 top-4 hover:text-color-error"
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
+        </div>
       )}
     </>
   );

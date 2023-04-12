@@ -1,6 +1,27 @@
 @layer base {
   html {
     @apply font-family-montserrat text-size-base leading-normal;
+
+    &::-webkit-scrollbar {
+      @apply w-[6px];
+    }
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-color-primary;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-color-bg;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-color-tertiary;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    @apply bg-color-tertiary;
+  }
+  :root {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg);
   }
 
   body {
