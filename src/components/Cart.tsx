@@ -25,6 +25,8 @@ export default function Cart({
     }
   }, [totalCartItems, onHideCart]);
 
+  const a11y = !isCartOpen && { tabIndex: -1, 'aria-hidden': true };
+
   return (
     <>
       {totalCartItems > 0 && (
@@ -36,6 +38,7 @@ export default function Cart({
           }`}
         >
           <button
+            {...a11y}
             type="button"
             onClick={onHideCart}
             className="absolute right-6 top-4 hover:text-[#ff3264]"
@@ -43,22 +46,23 @@ export default function Cart({
             <span className="material-symbols-outlined">close</span>
           </button>
 
-          <ul className="px-6 py-5">
+          <ul className="px-4 py-5 sm:px-6">
             {cartItems.map(item => (
               <CartItem
                 key={item.product.id}
                 item={item}
                 onUpdateQuantity={onUpdateQuantity}
                 onRemoveFromCart={onRemoveFromCart}
+                isCartOpen={isCartOpen}
               />
             ))}
           </ul>
 
-          <div className="bg-color-bg px-6 py-4">
-            <div className="flex items-center justify-between p-4">
+          <div className="bg-color-bg px-4 py-4 sm:px-6">
+            <div className="flex items-center justify-between px-4">
               <strong className="flex-1 pl-2">Total</strong>
 
-              <strong className="mr-14 w-[140px] text-right">
+              <strong className="mr-[40px] w-[40px] text-center">
                 {totalCartItems}
               </strong>
 
@@ -68,8 +72,9 @@ export default function Cart({
             </div>
           </div>
 
-          <div className="flex items-center justify-end px-6 py-5">
+          <div className="flex items-center justify-end px-5 py-5 sm:px-6">
             <button
+              {...a11y}
               type="button"
               onClick={onHideCart}
               className="button is_empty"
@@ -77,7 +82,7 @@ export default function Cart({
               Close
             </button>
 
-            <button type="button" className="button ml-4">
+            <button {...a11y} type="button" className="button ml-4">
               Order
             </button>
           </div>
