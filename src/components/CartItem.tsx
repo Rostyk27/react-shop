@@ -48,7 +48,7 @@ export default function CartItem({
           <button
             {...a11y}
             type="button"
-            className="flex hover:text-[#ff3264]"
+            className="flex hover:text-color-error"
             onClick={() => onRemoveFromCart(item.product.id)}
           >
             <span className="material-symbols-outlined text-[20px]">
@@ -61,7 +61,7 @@ export default function CartItem({
               {...a11y}
               type="button"
               disabled={item.quantity === 1}
-              className="flex hover:text-[#41d348]"
+              className="flex hover:text-color-success"
               onClick={() =>
                 onUpdateQuantity(item.product.id, item.quantity - 1)
               }
@@ -71,20 +71,12 @@ export default function CartItem({
               </span>
             </button>
 
-            <input
-              type="text"
-              name="quantity"
-              readOnly
-              tabIndex={-1}
-              aria-hidden="true"
-              value={item.quantity}
-              className="no_styles !focus:ring-0 w-[40px] cursor-default text-center transition-none focus-visible:outline-none focus-visible:ring-0"
-            />
+            <span className="w-[40px] text-center">{item.quantity}</span>
 
             <button
               {...a11y}
               type="button"
-              className="flex hover:text-[#41d348]"
+              className="flex hover:text-color-success"
               onClick={() =>
                 onUpdateQuantity(item.product.id, item.quantity + 1)
               }

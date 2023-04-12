@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CartItem from './CartItem';
+import CartForm from './CartForm';
 import type { IProduct } from '../types';
 
 export default function Cart({
@@ -10,6 +11,7 @@ export default function Cart({
   totalCartPrice,
   isCartOpen,
   onHideCart,
+  onClearCart,
 }: {
   cartItems: { product: IProduct; quantity: number }[];
   onUpdateQuantity: (productId: number, quantity: number) => void;
@@ -18,7 +20,18 @@ export default function Cart({
   totalCartPrice: number;
   isCartOpen: boolean;
   onHideCart: () => void;
+  onClearCart: () => void;
 }) {
+  const [cartSuccessMessage, setCartSuccessMessage] = useState('');
+
+  const handleSuccessMessage = (msg: string) => {
+    setCartSuccessMessage(msg);
+
+    setTimeout(() => {
+      setCartSuccessMessage('');
+    }, 3000);
+  };
+
   useEffect(() => {
     if (totalCartItems === 0) {
       onHideCart();
@@ -31,7 +44,7 @@ export default function Cart({
     <>
       {totalCartItems > 0 && (
         <div
-          className={`fixed right-[24px] top-8 z-10 max-h-[calc(100vh-64px)] w-[600px] max-w-[calc(100%-48px)] overflow-y-auto rounded-lg bg-white  pt-4 shadow-xl transition-all lg:right-[72px] ${
+          className={`popup ${
             isCartOpen
               ? 'pointer-events-all opacity-100'
               : 'pointer-events-none opacity-0'
@@ -41,7 +54,7 @@ export default function Cart({
             {...a11y}
             type="button"
             onClick={onHideCart}
-            className="absolute right-6 top-4 hover:text-[#ff3264]"
+            className="absolute right-6 top-4 hover:text-color-error"
           >
             <span className="material-symbols-outlined">close</span>
           </button>
@@ -72,21 +85,17 @@ export default function Cart({
             </div>
           </div>
 
-          <div className="flex items-center justify-end px-5 py-5 sm:px-6">
-            <button
-              {...a11y}
-              type="button"
-              onClick={onHideCart}
-              className="button is_empty"
-            >
-              Close
-            </button>
-
-            <button {...a11y} type="button" className="button ml-4">
-              Order
-            </button>
-          </div>
+          <CartForm
+            isCartOpen={isCartOpen}
+            onHideCart={onHideCart}
+            onClearCart={onClearCart}
+            cartSuccessMessage={handleSuccessMessage}
+          />
         </div>
+      )}
+
+      {cartSuccessMessage.length > 0 && (
+        <div className="popup !p-7 text-center">{cartSuccessMessage}</div>
       )}
     </>
   );

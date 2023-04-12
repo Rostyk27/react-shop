@@ -96,6 +96,10 @@ export default function App() {
     setIsCartOpen(false);
   };
 
+  const handleClearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <>
       <Header totalCartItems={totalCartItems} onShowCart={handleShowCart} />
@@ -108,6 +112,7 @@ export default function App() {
         totalCartPrice={totalCartPrice}
         isCartOpen={isCartOpen}
         onHideCart={handleHideCart}
+        onClearCart={handleClearCart}
       />
 
       <main id="main" className="flex-[1_0_auto] overflow-hidden">

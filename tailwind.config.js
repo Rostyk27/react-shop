@@ -9,6 +9,8 @@ module.exports = {
         'color-tertiary': 'var(--color-tertiary)',
         'color-text': 'var(--color-text)',
         'color-bg': 'var(--color-bg)',
+        'color-error': 'var(--color-error)',
+        'color-success': 'var(--color-success)',
       },
       fontFamily: {
         'family-montserrat': 'var(--family-montserrat)',
