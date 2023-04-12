@@ -128,9 +128,7 @@ export default function Products({
   return (
     <section className="products mb-16 lg:mb-20">
       <div className="container">
-        <h2 className="mb-5 text-2xl font-bold lg:mb-7 lg:text-3xl">
-          All products
-        </h2>
+        <h1>All products</h1>
 
         <div className="product__actions mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 xl:gap-8">
           <ProductSearch searchTerm={searchTerm} onSearch={handleSearch} />

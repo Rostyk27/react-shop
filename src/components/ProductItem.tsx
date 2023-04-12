@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AddToCartContext } from './AddToCartContext';
 
 import type { IProduct } from '../types';
@@ -27,8 +28,8 @@ export default function ProductItem({
 
   return (
     <li id={`pid_${id}`} className="product">
-      <a
-        href={link}
+      <Link
+        to={`/product/${link}`}
         tabIndex={-1}
         aria-hidden="true"
         className="mb-4 flex hover:opacity-75"
@@ -40,16 +41,16 @@ export default function ProductItem({
             className="object-cover object-center"
           />
         </figure>
-      </a>
+      </Link>
 
       <small className="mb-3 inline-flex border-[1px] px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] text-color-tertiary">
         {category}
       </small>
 
       <h3 className="mb-2">
-        <a href={link} className="hover:text-color-tertiary">
+        <Link to={`/product/${link}`} className="hover:text-color-tertiary">
           {name}
-        </a>
+        </Link>
       </h3>
 
       <p className="mb-5 lg:text-lg">

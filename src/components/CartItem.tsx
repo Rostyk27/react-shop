@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { IProduct } from '../types';
 
 export default function CartItem({
@@ -16,8 +17,8 @@ export default function CartItem({
   return (
     <li className="w-full border-b-[1px] border-color-primary p-4 sm:flex sm:items-center sm:justify-between">
       <div className="flex flex-1 items-center">
-        <a
-          href={item.product.link}
+        <Link
+          to={`/product/${item.product.link}`}
           tabIndex={-1}
           aria-hidden="true"
           className="flex w-[60px] hover:opacity-75"
@@ -30,16 +31,16 @@ export default function CartItem({
               height="60px"
             />
           </figure>
-        </a>
+        </Link>
 
         <h5 className="flex-1 pl-4 pr-2 text-[13px]">
-          <a
+          <Link
+            to={`/product/${item.product.link}`}
             {...a11y}
-            href={item.product.link}
             className="hover:text-color-tertiary"
           >
             {item.product.name}
-          </a>
+          </Link>
         </h5>
       </div>
 

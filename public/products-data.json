@@ -3,92 +3,92 @@
     {
       "id": 1,
       "name": "Earthen Bottle",
-      "link": "#",
+      "link": "earthen-bottle",
       "price": 48,
       "category": "bottle",
       "inStock": true,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
+      "imageSrc": "/images/product-01.jpg",
       "imageAlt": "Tall slender porcelain bottle with natural clay textured body and cork stopper."
     },
     {
       "id": 2,
       "name": "Nomad Tumbler",
-      "link": "#",
+      "link": "nomad-tumbler",
       "price": 35,
       "category": "bottle",
       "inStock": false,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
+      "imageSrc": "/images/product-02.jpg",
       "imageAlt": "Olive drab green insulated bottle with flared screw lid and flat top."
     },
     {
       "id": 3,
       "name": "Focus Paper Refill",
-      "link": "#",
+      "link": "focus-paper-refill",
       "price": 89,
       "category": "pen",
       "inStock": true,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
+      "imageSrc": "/images/product-03.jpg",
       "imageAlt": "Person using a pen to cross a task off a productivity paper card."
     },
     {
       "id": 4,
       "name": "Machined Mechanical Pencil",
-      "link": "#",
+      "link": "machined-mechanical-pencil",
       "price": 35,
       "category": "pen",
       "inStock": true,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
+      "imageSrc": "/images/product-04.jpg",
       "imageAlt": "Hand holding black machined steel mechanical pencil with brass tip and top."
     },
     {
       "id": 5,
       "name": "Focus Card Tray",
-      "link": "#",
+      "link": "focus-card-tray",
       "price": 64,
       "category": "pen",
       "inStock": false,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-05.jpg",
+      "imageSrc": "/images/product-05.jpg",
       "imageAlt": "Paper card sitting upright in walnut card holder on desk."
     },
     {
       "id": 6,
       "name": "Focus Multi-Pack",
-      "link": "#",
+      "link": "focus-multi-pack",
       "price": 39,
       "category": "box",
       "inStock": true,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-06.jpg",
+      "imageSrc": "/images/product-06.jpg",
       "imageAlt": "Stack of 3 small drab green cardboard paper card refill boxes with white text."
     },
     {
       "id": 7,
       "name": "Brass Scissors",
-      "link": "#",
+      "link": "brass-scissors",
       "price": 50,
       "category": "scissors",
       "inStock": true,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-07.jpg",
+      "imageSrc": "/images/product-07.jpg",
       "imageAlt": "Brass scissors with geometric design, black steel finger holes, and included upright brass stand."
     },
     {
       "id": 8,
       "name": "Focus Carry Pouch",
-      "link": "#",
+      "link": "focus-carry-pouch",
       "price": 32,
       "category": "pen",
       "inStock": true,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-08.jpg",
+      "imageSrc": "/images/product-08.jpg",
       "imageAlt": "Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop."
     },
     {
       "id": 9,
-      "name": "New Pencil",
-      "link": "#",
+      "name": "New Pen",
+      "link": "new-pen",
       "price": 44,
       "category": "pen",
       "inStock": true,
-      "imageSrc": "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-      "imageAlt": "Lorem ipsum pencil."
+      "imageSrc": "/images/product-04.jpg",
+      "imageAlt": "Lorem ipsum pen."
     }
   ]
 }

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Header({
   totalCartItems,
   onShowCart,
@@ -8,9 +10,9 @@ export default function Header({
   return (
     <header className="mb-14 bg-color-primary py-8 lg:mb-[10vh]">
       <div className="container flex items-center justify-between">
-        <span className="flex items-center">
+        <Link to={'/'} className="flex items-center hover:text-color-tertiary">
           Shop app <span className="material-symbols-outlined ml-1">apps</span>
-        </span>
+        </Link>
 
         <button
           disabled={totalCartItems === 0}

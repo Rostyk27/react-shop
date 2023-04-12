@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Cart from './components/Cart';
-import Content from './components/Content';
-import Products from './components/Products';
 import Footer from './components/Footer';
+import Products from './components/Products';
+import ProductSingle from './components/ProductSingle';
+import Error404 from './components/404';
 
 import type { IProduct } from './types';
 
@@ -101,26 +103,46 @@ export default function App() {
   };
 
   return (
-    <>
-      <Header totalCartItems={totalCartItems} onShowCart={handleShowCart} />
+    <Router>
+      <>
+        <Header totalCartItems={totalCartItems} onShowCart={handleShowCart} />
 
-      <Cart
-        cartItems={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveFromCart={handleRemoveFromCart}
-        totalCartItems={totalCartItems}
-        totalCartPrice={totalCartPrice}
-        isCartOpen={isCartOpen}
-        onHideCart={handleHideCart}
-        onClearCart={handleClearCart}
-      />
+        <Cart
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateQuantity}
+          onRemoveFromCart={handleRemoveFromCart}
+          totalCartItems={totalCartItems}
+          totalCartPrice={totalCartPrice}
+          isCartOpen={isCartOpen}
+          onHideCart={handleHideCart}
+          onClearCart={handleClearCart}
+        />
 
-      <main id="main" className="flex-[1_0_auto] overflow-hidden">
-        <Content />
-        <Products products={products} addToCart={handleAddToCart} />
-      </main>
+        <main id="main" className="flex-[1_0_auto] overflow-hidden">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Products products={products} addToCart={handleAddToCart} />
+              }
+            />
 
-      <Footer />
-    </>
+            <Route
+              path="/product/:productLink"
+              element={
+                <ProductSingle
+                  products={products}
+                  addToCart={handleAddToCart}
+                />
+              }
+            />
+
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </>
+    </Router>
   );
 }
