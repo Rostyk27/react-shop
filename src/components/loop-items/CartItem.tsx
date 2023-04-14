@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { IProduct } from '../types';
+import { IProduct } from '../../types';
 
 export default function CartItem({
   item,

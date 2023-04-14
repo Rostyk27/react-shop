@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
-import ProductSearch from './ProductSearch';
-import ProductFilter from './ProductFilter';
-import ProductSort from './ProductSort';
-import ProductInStock from './ProductInStock';
-import ProductItem from './ProductItem';
-import Pagination from './Pagination';
+import ProductSearch from '../product-filters/ProductSearch';
+import ProductFilter from '../product-filters/ProductFilter';
+import ProductSort from '../product-filters/ProductSort';
+import ProductInStock from '../product-filters/ProductInStock';
+import ProductItem from '../loop-items/ProductItem';
+import Pagination from '../product-filters/Pagination';
 
-import { AddToCartContext } from './AddToCartContext';
-import type { IProduct } from '../types';
+import { AddToCartContext } from '../AddToCartContext';
+import type { IProduct } from '../../types';
 
 export default function Products({
   products,
@@ -164,6 +164,7 @@ export default function Products({
                   inStock={product.inStock}
                   imageSrc={product.imageSrc}
                   imageAlt={product.imageAlt}
+                  description={product.description}
                 />
               ))}
             </AddToCartContext.Provider>

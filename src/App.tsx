@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
-import Cart from './components/Cart';
+import Cart from './components/cart/Cart';
 import Footer from './components/Footer';
-import Products from './components/Products';
-import ProductSingle from './components/ProductSingle';
-import Error404 from './components/404';
+import Products from './components/pages/Products';
+import ProductSingle from './components/pages/ProductSingle';
+import Error404 from './components/pages/404';
 
 import type { IProduct } from './types';
 

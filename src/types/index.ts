@@ -7,4 +7,5 @@ export interface IProduct {
   inStock: boolean;
   imageSrc: string;
   imageAlt: string;
+  description: string;
 }

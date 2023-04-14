@@ -1,10 +1,12 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import ProductButton from './ProductButton';
+import ProductCategory from '../product-parts/ProductCategory';
+import ProductPrice from '../product-parts/ProductPrice';
+import ProductButton from '../product-parts/ProductButton';
 
-import { AddToCartContext } from './AddToCartContext';
-import type { IProduct } from '../types';
+import { AddToCartContext } from '../AddToCartContext';
+import type { IProduct } from '../../types';
 
 export default function ProductItem({
   id,
@@ -35,9 +37,7 @@ export default function ProductItem({
         </figure>
       </Link>
 
-      <small className="mb-3 inline-flex border-[1px] px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] text-color-tertiary">
-        {category}
-      </small>
+      <ProductCategory name={category} />
 
       <h3 className="mb-2">
         <Link to={`/products/${link}`} className="hover:text-color-tertiary">
@@ -45,9 +45,7 @@ export default function ProductItem({
         </Link>
       </h3>
 
-      <p className="mb-5 lg:text-lg">
-        <strong>${price}</strong>
-      </p>
+      <ProductPrice price={price} />
 
       <ProductButton id={id} inStock={inStock} addToCart={addToCart} />
     </li>

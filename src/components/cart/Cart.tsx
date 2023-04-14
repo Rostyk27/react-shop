@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import CartItem from './CartItem';
+import CartItem from '../loop-items/CartItem';
 import CartForm from './CartForm';
-import type { IProduct } from '../types';
+import type { IProduct } from '../../types';
 
 export default function Cart({
   cartItems,
