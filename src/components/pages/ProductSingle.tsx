@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import ProductCategory from '../product-parts/ProductCategory';
 import ProductPrice from '../product-parts/ProductPrice';
+import ProductQuantityControls from '../product-parts/ProductQuantityControls';
 import ProductButton from '../product-parts/ProductButton';
 import Error404 from './404';
 
@@ -30,17 +31,21 @@ export default function ProductSingle({
     setProduct(foundProduct || null);
   }, [products, productLink]);
 
+  const handleQuantityChange = (id: number, quantity: number) => {
+    setProductQuantity(quantity);
+  };
+
   if (product === null) {
     return <Error404 />;
   }
 
   return (
-    <div className="product__single">
+    <div className="product__single mb-20 md:mb-24">
       <div className="container">
         <h1>{product.name}</h1>
 
         <div className="max-w-[940px] md:flex">
-          <figure className="flex w-[440px] overflow-hidden rounded-lg shadow-lg">
+          <figure className="mb-10 flex w-[320px] max-w-full overflow-hidden rounded-lg shadow-lg md:mb-0 lg:w-[440px]">
             <img
               className="object-cover object-center"
               src={product.imageSrc}
@@ -55,12 +60,24 @@ export default function ProductSingle({
 
             <ProductPrice price={product.price} />
 
-            <ProductButton
-              id={product.id}
-              inStock={product.inStock}
-              addToCart={addToCart}
-              addToCartQuantity={productQuantity}
-            />
+            <div className="flex items-center">
+              {product.inStock && (
+                <div className="mr-7">
+                  <ProductQuantityControls
+                    id={product.id}
+                    quantity={productQuantity}
+                    onQuantityChange={handleQuantityChange}
+                  />
+                </div>
+              )}
+
+              <ProductButton
+                id={product.id}
+                inStock={product.inStock}
+                addToCart={addToCart}
+                addToCartQuantity={productQuantity}
+              />
+            </div>
           </div>
         </div>
       </div>

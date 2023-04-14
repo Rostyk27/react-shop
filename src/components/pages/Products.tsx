@@ -126,7 +126,7 @@ export default function Products({
   };
 
   return (
-    <section className="products mb-16 lg:mb-20">
+    <section className="products mb-20 lg:mb-24">
       <div className="container">
         <h1>All products</h1>
 
