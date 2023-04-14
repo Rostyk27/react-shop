@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import CartItem from '../loop-items/CartItem';
 import CartForm from './CartForm';
 import type { IProduct } from '../../types';
@@ -22,11 +23,9 @@ export default function Cart({
   onHideCart: () => void;
   onClearCart: () => void;
 }) {
-  useEffect(() => {
-    if (totalCartItems === 0) {
-      onHideCart();
-    }
-  }, [totalCartItems, onHideCart]);
+  // const closeRef = useRef(null);
+  const location = useLocation();
+  const a11y = !isCartOpen && { tabIndex: -1, 'aria-hidden': true };
 
   const [cartSuccessMessage, setCartSuccessMessage] = useState('');
 
@@ -34,7 +33,17 @@ export default function Cart({
     setCartSuccessMessage(msg);
   };
 
-  const a11y = !isCartOpen && { tabIndex: -1, 'aria-hidden': true };
+  useEffect(() => {
+    if (totalCartItems === 0) {
+      // if (closeRef.current === null) return;
+      // (closeRef.current as HTMLButtonElement).click();
+      onHideCart();
+    }
+  }, [totalCartItems]);
+
+  useEffect(() => {
+    onHideCart();
+  }, [location]);
 
   return (
     <>
@@ -49,6 +58,7 @@ export default function Cart({
           <button
             {...a11y}
             type="button"
+            // ref={closeRef}
             onClick={onHideCart}
             className="absolute right-6 top-4 hover:text-color-error"
           >
