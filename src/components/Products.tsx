@@ -15,7 +15,7 @@ export default function Products({
   addToCart,
 }: {
   products: IProduct[] | null;
-  addToCart: (productId: number) => void;
+  addToCart: (productId: number, productQuantity?: number) => void;
 }) {
   const [categories, setCategories] = useState(['all'] as string[]);
   const [searchTerm, setSearchTerm] = useState('' as string);

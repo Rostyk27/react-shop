@@ -1,7 +1,9 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AddToCartContext } from './AddToCartContext';
 
+import ProductButton from './ProductButton';
+
+import { AddToCartContext } from './AddToCartContext';
 import type { IProduct } from '../types';
 
 export default function ProductItem({
@@ -16,20 +18,10 @@ export default function ProductItem({
 }: IProduct) {
   const addToCart = useContext(AddToCartContext);
 
-  const [buttonText, setButtonText] = useState('Add to cart');
-
-  const handleButtonTextChange = () => {
-    setButtonText('Added!');
-
-    setTimeout(() => {
-      setButtonText('Add to cart');
-    }, 1000);
-  };
-
   return (
     <li id={`pid_${id}`} className="product">
       <Link
-        to={`/product/${link}`}
+        to={`/products/${link}`}
         tabIndex={-1}
         aria-hidden="true"
         className="mb-4 flex hover:opacity-75"
@@ -48,7 +40,7 @@ export default function ProductItem({
       </small>
 
       <h3 className="mb-2">
-        <Link to={`/product/${link}`} className="hover:text-color-tertiary">
+        <Link to={`/products/${link}`} className="hover:text-color-tertiary">
           {name}
         </Link>
       </h3>
@@ -57,23 +49,7 @@ export default function ProductItem({
         <strong>${price}</strong>
       </p>
 
-      {inStock ? (
-        <button
-          type="button"
-          className="button"
-          disabled={buttonText === 'Added!'}
-          onClick={() => {
-            addToCart(id);
-            handleButtonTextChange();
-          }}
-        >
-          {buttonText}
-        </button>
-      ) : (
-        <button className="button" disabled type="button">
-          Out of stock
-        </button>
-      )}
+      <ProductButton id={id} inStock={inStock} addToCart={addToCart} />
     </li>
   );
 }

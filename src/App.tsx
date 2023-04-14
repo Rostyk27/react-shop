@@ -44,7 +44,7 @@ export default function App() {
     return <div className="container">Loading...</div>;
   }
 
-  const handleAddToCart = (productId: number) => {
+  const handleAddToCart = (productId: number, productQuantity: number = 1) => {
     const productToAdd = products.find(
       (product: IProduct) => product.id === productId
     );
@@ -58,12 +58,15 @@ export default function App() {
         setCartItems(
           cartItems.map(item =>
             item.product.id === productId
-              ? { ...item, quantity: item.quantity + 1 }
+              ? { ...item, quantity: item.quantity + productQuantity }
               : item
           )
         );
       } else {
-        setCartItems([...cartItems, { product: productToAdd, quantity: 1 }]);
+        setCartItems([
+          ...cartItems,
+          { product: productToAdd, quantity: productQuantity },
+        ]);
       }
     }
   };
@@ -128,7 +131,7 @@ export default function App() {
             />
 
             <Route
-              path="/product/:productLink"
+              path="/products/:productLink"
               element={
                 <ProductSingle
                   products={products}

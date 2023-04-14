@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import ProductButton from './ProductButton';
 import Error404 from './404';
 
-import { AddToCartContext } from './AddToCartContext';
 import type { IProduct } from '../types';
 
 export default function ProductSingle({
@@ -11,11 +11,12 @@ export default function ProductSingle({
   addToCart,
 }: {
   products: IProduct[] | null;
-  addToCart: (productId: number) => void;
+  addToCart: (productId: number, productQuantity?: number) => void;
 }) {
   const { productLink } = useParams();
 
   const [product, setProduct] = useState(null as IProduct | null);
+  const [productQuantity, setProductQuantity] = useState(1);
 
   useEffect(() => {
     if (products === null) {
@@ -43,6 +44,13 @@ export default function ProductSingle({
             alt={product.imageAlt}
           />
         </figure>
+
+        <ProductButton
+          id={product.id}
+          inStock={product.inStock}
+          addToCart={addToCart}
+          addToCartQuantity={productQuantity}
+        />
       </div>
     </div>
   );

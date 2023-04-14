@@ -18,7 +18,7 @@ export default function CartItem({
     <li className="w-full border-b-[1px] border-color-primary p-4 sm:flex sm:items-center sm:justify-between">
       <div className="flex flex-1 items-center">
         <Link
-          to={`/product/${item.product.link}`}
+          to={`/products/${item.product.link}`}
           tabIndex={-1}
           aria-hidden="true"
           className="flex w-[60px] hover:opacity-75"
@@ -35,7 +35,7 @@ export default function CartItem({
 
         <h5 className="flex-1 pl-4 pr-2 text-[13px]">
           <Link
-            to={`/product/${item.product.link}`}
+            to={`/products/${item.product.link}`}
             {...a11y}
             className="hover:text-color-tertiary"
           >
