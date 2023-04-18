@@ -1,6 +1,13 @@
 @layer components {
   .container {
-    @apply mx-auto w-[1200px] max-w-[calc(100%-48px)] lg:max-w-[calc(100%-144px)];
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100% - 48px);
+
+    @media screen and (min-width: 1025px) {
+      max-width: calc(100% - 144px);
+    }
   }
 
   .button {

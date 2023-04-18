@@ -3,7 +3,7 @@
     @apply font-family-montserrat text-size-base leading-normal;
 
     &::-webkit-scrollbar {
-      @apply w-[6px];
+      width: 6px;
     }
   }
 
