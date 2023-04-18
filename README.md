@@ -1,4 +1,4 @@
-# [Demo URL](https://react-shop.rostyk.dev/)
+[Demo URL](https://react-shop.rostyk.dev/)
 
 # Getting Started with Create React App
 
