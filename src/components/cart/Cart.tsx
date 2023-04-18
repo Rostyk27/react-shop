@@ -48,6 +48,7 @@ export default function Cart({
     if (isCartOpen) {
       onHideCartCallback();
     }
+    // eslint-disable-next-line
   }, [location]);
 
   return (

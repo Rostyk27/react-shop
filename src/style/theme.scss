@@ -21,3 +21,11 @@
     @apply w-[4px];
   }
 }
+
+.checkbox_element {
+  @apply pointer-events-all inline-flex h-[22px] w-[22px] cursor-pointer select-none rounded-[6px] bg-color-primary p-px text-center text-[20px] leading-[20px] text-color-primary transition-all duration-200 hover:bg-color-secondary hover:text-color-secondary;
+
+  &.is_checked {
+    @apply bg-color-secondary text-white;
+  }
+}
