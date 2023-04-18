@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import CartItem from '../loop-items/CartItem';
 import CartForm from './CartForm';
+
 import type { IProduct } from '../../types';
 
 export default function Cart({
@@ -23,7 +25,6 @@ export default function Cart({
   onHideCart: () => void;
   onClearCart: () => void;
 }) {
-  // const closeRef = useRef(null);
   const location = useLocation();
   const a11y = !isCartOpen && { tabIndex: -1, 'aria-hidden': true };
 
@@ -33,16 +34,20 @@ export default function Cart({
     setCartSuccessMessage(msg);
   };
 
-  useEffect(() => {
-    if (totalCartItems === 0) {
-      // if (closeRef.current === null) return;
-      // (closeRef.current as HTMLButtonElement).click();
-      onHideCart();
-    }
-  }, [totalCartItems]);
+  const onHideCartCallback = useCallback(() => {
+    onHideCart();
+  }, [onHideCart]);
 
   useEffect(() => {
-    onHideCart();
+    if (totalCartItems === 0) {
+      onHideCartCallback();
+    }
+  }, [totalCartItems, onHideCartCallback]);
+
+  useEffect(() => {
+    if (isCartOpen) {
+      onHideCartCallback();
+    }
   }, [location]);
 
   return (
@@ -58,7 +63,6 @@ export default function Cart({
           <button
             {...a11y}
             type="button"
-            // ref={closeRef}
             onClick={onHideCart}
             className="absolute right-6 top-4 hover:text-color-error"
           >
