@@ -121,7 +121,10 @@ export default function App() {
           onClearCart={handleClearCart}
         />
 
-        <main id="main" className="flex-[1_0_auto] overflow-hidden">
+        <main
+          id="main"
+          className="mt-[calc(100px+3.5rem)] flex-[1_0_auto] overflow-hidden lg:mt-[calc(100px+10vh)]"
+        >
           <Routes>
             <Route
               path="/"

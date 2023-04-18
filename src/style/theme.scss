@@ -11,7 +11,7 @@
 }
 
 .popup {
-  @apply absolute right-[24px] top-8 z-10 max-h-[calc(100vh-64px)] w-[560px] max-w-[calc(100%-48px)] overflow-y-auto rounded-lg bg-white pt-4 shadow-xl transition-all;
+  @apply fixed right-[24px] top-8 z-10 max-h-[calc(100vh-64px)] w-[560px] max-w-[calc(100%-48px)] overflow-y-auto rounded-lg bg-white pt-4 shadow-xl transition-all;
 
   @media screen and (min-width: 1025px) {
     right: 72px;
