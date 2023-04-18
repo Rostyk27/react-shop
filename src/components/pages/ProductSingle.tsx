@@ -59,7 +59,7 @@ export default function ProductSingle({
 
             <ProductPrice price={product.price} />
 
-            <div className="flex items-center">
+            <div className="flex items-center pt-3 lg:pt-5">
               {product.inStock && (
                 <div className="mr-7">
                   <ProductQuantityControls

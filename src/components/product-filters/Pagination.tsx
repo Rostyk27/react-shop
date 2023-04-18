@@ -16,7 +16,7 @@ export default function Pagination({
   };
 
   return (
-    <div className="pagination -mx-1 mt-14 flex items-center justify-center">
+    <div className="pagination -mx-1 mt-14 flex items-center justify-center lg:mt-20">
       <button
         disabled={currentPage === 1}
         onClick={() => handlePageClick(currentPage - 1)}

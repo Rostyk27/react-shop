@@ -9,7 +9,7 @@ export default function ProductInStock({
     <div>
       <label
         htmlFor="inStock"
-        className="pointer-events-none !mb-0 flex flex-wrap"
+        className="pointer-events-none !mb-0 mt-px flex flex-wrap"
       >
         <small className="label pointer-events-all w-full leading-[24px]">
           Show only products in stock
