@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import ProductImage from '../product-parts/ProductImage';
 import ProductCategory from '../product-parts/ProductCategory';
 import ProductPrice from '../product-parts/ProductPrice';
 import ProductButton from '../product-parts/ProductButton';
@@ -28,13 +29,11 @@ export default function ProductItem({
         aria-hidden="true"
         className="mb-4 flex hover:opacity-75"
       >
-        <figure className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-color-bg xl:aspect-h-8 xl:aspect-w-7">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="object-cover object-center"
-          />
-        </figure>
+        <ProductImage
+          imageSrc={imageSrc}
+          imageAlt={imageAlt}
+          className="aspect-h-1 aspect-w-1 w-full bg-color-bg xl:aspect-h-8 xl:aspect-w-7"
+        />
       </Link>
 
       <ProductCategory name={category} />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import ProductImage from '../product-parts/ProductImage';
 import ProductCategory from '../product-parts/ProductCategory';
 import ProductPrice from '../product-parts/ProductPrice';
 import ProductQuantityControls from '../product-parts/ProductQuantityControls';
@@ -45,13 +46,11 @@ export default function ProductSingle({
         <h1>{product.name}</h1>
 
         <div className="max-w-[940px] md:flex">
-          <figure className="mb-10 flex w-[320px] max-w-full overflow-hidden rounded-lg shadow-lg md:mb-0 lg:w-[440px]">
-            <img
-              className="object-cover object-center"
-              src={product.imageSrc}
-              alt={product.imageAlt}
-            />
-          </figure>
+          <ProductImage
+            imageSrc={product.imageSrc}
+            imageAlt={product.imageAlt}
+            className="mb-10 w-[320px] max-w-full shadow-lg md:mb-0 lg:w-[440px]"
+          />
 
           <div className="md:flex-1 md:pl-16">
             <ProductCategory name={product.category} />

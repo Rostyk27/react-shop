@@ -109,7 +109,6 @@ export default function Cart({
           {cartSuccessMessage}
 
           <button
-            {...a11y}
             type="button"
             onClick={() => handleSuccessMessage('')}
             className="absolute right-6 top-4 hover:text-color-error"

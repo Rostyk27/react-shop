@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
+
+import ProductImage from '../product-parts/ProductImage';
 import ProductQuantityControls from '../product-parts/ProductQuantityControls';
+
 import { IProduct } from '../../types';
 
 export default function CartItem({
@@ -24,14 +27,12 @@ export default function CartItem({
           aria-hidden="true"
           className="flex w-[60px] hover:opacity-75"
         >
-          <figure className="flex overflow-hidden rounded-lg">
-            <img
-              src={item.product.imageSrc}
-              alt={item.product.imageAlt}
-              width="60px"
-              height="60px"
-            />
-          </figure>
+          <ProductImage
+            imageSrc={item.product.imageSrc}
+            imageAlt={item.product.imageAlt}
+            width="60px"
+            height="60px"
+          />
         </Link>
 
         <h5 className="flex-1 pl-4 pr-2 text-[13px]">
