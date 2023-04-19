@@ -33,3 +33,39 @@
     @apply bg-color-primary text-color-secondary;
   }
 }
+
+.react-select {
+  &__control {
+    @extend .select;
+    @apply capitalize;
+    cursor: pointer !important;
+
+    &--menu-is-open {
+      @apply ring-2;
+    }
+  }
+
+  &__indicator {
+    width: 16px;
+    fill: var(--color-tertiary);
+  }
+
+  &__menu {
+    @apply my-2 rounded-md bg-white;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 11px rgba(0, 0, 0, 0.1);
+
+    &-list {
+      @apply py-1;
+    }
+  }
+
+  &__option {
+    @apply px-3 py-2 capitalize text-color-secondary hover:bg-color-bg;
+    font-size: 14px !important;
+    cursor: pointer !important;
+
+    &--is-selected {
+      @apply bg-color-primary hover:bg-color-primary;
+    }
+  }
+}

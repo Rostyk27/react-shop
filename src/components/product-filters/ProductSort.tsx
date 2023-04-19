@@ -1,3 +1,5 @@
+import Select from 'react-select';
+
 export default function ProductSort({
   selectedSort,
   onSortChange,
@@ -5,23 +7,36 @@ export default function ProductSort({
   selectedSort: string;
   onSortChange: (sort: string) => void;
 }) {
+  const sortingOptions = [
+    { value: 'id', label: 'Default' },
+    { value: 'name-asc', label: 'Name A-Z' },
+    { value: 'name-desc', label: 'Name Z-A' },
+    { value: 'price-asc', label: 'Price increase' },
+    { value: 'price-desc', label: 'Price decrease' },
+  ];
+
   return (
     <div>
       <label htmlFor="sorting">
         <small>Sort by:</small>
       </label>
 
-      <select
+      <Select
+        options={sortingOptions}
         id="sorting"
-        value={selectedSort}
-        onChange={e => onSortChange(e.target.value)}
-      >
-        <option value="id">Default</option>
-        <option value="name-asc">Name A-Z</option>
-        <option value="name-desc">Name Z-A</option>
-        <option value="price-asc">Price increase</option>
-        <option value="price-desc">Price decrease</option>
-      </select>
+        className="react-select-container"
+        classNamePrefix="react-select"
+        unstyled={true}
+        isSearchable={false}
+        defaultValue={sortingOptions[0]}
+        onChange={e => e && onSortChange(e.value)}
+        value={{
+          value: selectedSort,
+          label:
+            sortingOptions.find(option => option.value === selectedSort)
+              ?.label ?? '',
+        }}
+      />
     </div>
   );
 }

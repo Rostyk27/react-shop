@@ -1,3 +1,5 @@
+import Select from 'react-select';
+
 export default function ProductFilter({
   categories,
   selectedCategory,
@@ -7,24 +9,28 @@ export default function ProductFilter({
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
 }) {
+  const categoryOptions = categories.map((category: string) => ({
+    value: category,
+    label: category,
+  }));
+
   return (
     <div>
       <label htmlFor="categories">
         <small>Categories:</small>
       </label>
 
-      <select
+      <Select
+        options={categoryOptions}
         id="categories"
-        className="capitalize"
-        value={selectedCategory}
-        onChange={e => onCategoryChange(e.target.value)}
-      >
-        {categories.map((category: string) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
+        className="react-select-container"
+        classNamePrefix="react-select"
+        unstyled={true}
+        isSearchable={false}
+        defaultValue={categoryOptions[0]}
+        onChange={e => e && onCategoryChange(e.value)}
+        value={{ value: selectedCategory, label: selectedCategory }}
+      />
     </div>
   );
 }
